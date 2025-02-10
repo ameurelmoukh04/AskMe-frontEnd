@@ -1,0 +1,28 @@
+.linkContainer{
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* 8 x 0.25rem (default Tailwind spacing scale) */
+    font-weight: 500; /* Font medium */
+    font-size: 1.25rem; /* Text-xl in Tailwind */
+    line-height: 1.75rem; /* Matches the line-height of text-xl */
+}
+
+nav{
+    max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.links {
+    transition: color 200ms linear;
+  }
+  
+  .links:hover {
+    color: var(--primary); /* Replace --primary with your primary color variable or value */
+  }
+
+ 
