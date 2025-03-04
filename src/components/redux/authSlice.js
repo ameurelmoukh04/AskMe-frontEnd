@@ -45,9 +45,11 @@ export const login = createAsyncThunk('auth/login',
 
 
             if (response.status === 200) {
-                const token = localStorage.setItem('token', response.data.token);
+                localStorage.setItem('token', response.data.token);
+                localStorage.setItem('username',response.data.user.name,);
+                    
                 alert('logged in')
-                window.location.href = '/'
+                return response.data;
             }
         } catch (error) {
             console.log(error.message)
@@ -57,7 +59,6 @@ export const logout = createAsyncThunk('auth/logout',
     async () => {
         try {
             const token = localStorage.getItem("token");
-            console.log(token)
             await axios.post(`${backendURL}/logout`, {}, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -73,8 +74,12 @@ export const logout = createAsyncThunk('auth/logout',
 const initialState = {
 
     loading: false,
-    userInfo: null,
-    userToken: null,
+    user:{
+        id: null,
+        userToken:null,
+        name:null,
+        email: null,
+    },
     error: null,
     success: false,
 };
@@ -84,7 +89,8 @@ const initialState = {
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: (builder) => {
 
         builder.
@@ -120,6 +126,10 @@ export const authSlice = createSlice({
 
             state.loading = false
             state.success = true
+            state.user.id = payload.user.id;
+            state.user.userToken = payload.token;
+            state.user.name = payload.user.name;
+            state.user.email = payload.user.email;
         })
         builder.addCase(login.rejected, (state, { payload }) => {
 

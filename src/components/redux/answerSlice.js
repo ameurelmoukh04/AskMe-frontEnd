@@ -40,7 +40,7 @@ export const addAnswer =createAsyncThunk(
                                           {data},
                                           config)
     }catch(error){console.log(error.message)}
-    console.log(response.data)
+     
   
   }
 

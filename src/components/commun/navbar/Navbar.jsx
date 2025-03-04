@@ -3,14 +3,15 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../../redux/authSlice'
 import './navbar.css'
+import logo  from '../../../assets/react.svg'
 const Navbar = () => {
     const dispatch =useDispatch();
   const token = localStorage.getItem('token');
   return (
-    <>
     <nav className='container'>
-      <div>
-        <h1 href=""><Link to={'/'}>AskMe</Link></h1>
+      <div className=''>
+        <Link to={'/'}><img src={logo} alt="" /></Link>
+        
       </div>
       <div className='linkContainer'>
         <Link to={'/profile'} >Profile</Link>
@@ -20,8 +21,6 @@ const Navbar = () => {
       }
       </div>
     </nav>
-    
-    </>
   
   )
 }

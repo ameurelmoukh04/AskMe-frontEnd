@@ -2,15 +2,34 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import Navbar from '../commun/navbar/Navbar';
-import { addQuestion } from '../redux/questionSlice';
+import axios from 'axios';
+import { backendURL } from '../redux/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const CreateQuestion = () => {
     const {register,handleSubmit} = useForm();
     const token = localStorage.getItem('token')
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
-    const submitForm = (data) =>{
-        dispatch(addQuestion(data))
+    const submitForm = async (data) =>{
+        try {
+            const token = localStorage.getItem('token');
+            if(!token) navigate('/');
+            const config = {
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${token}`,
+              }
+            }
+            const response = await axios.post(`${backendURL}/questions`,
+              { content : data.content },
+              config);
+            console.log(response.status, response.data)
+          } catch (error) {
+            console.log(error.message)
+          }
     }
   return (
     <div>

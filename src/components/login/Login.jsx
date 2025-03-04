@@ -1,15 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../commun/navbar/Navbar';
 import { login } from '../redux/authSlice';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const navigator = useNavigate();
     const { register, handleSubmit } = useForm();
 
     const submitForm = (data) => {
-        dispatch(login(data));
+        dispatch(login(data)).then(navigator('/'))
     }
     return (
         <>
