@@ -45,7 +45,7 @@ const WhatDoYouWantToAsk = () => {
           <input
             type="text" {...register('content')}
             placeholder={'what do you think'+' '+username + '?'}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
         <button type='submit' className="bg-blue-500 text-black flex-2 px-4 py-2 rounded-full hover:bg-blue-600 transition" >

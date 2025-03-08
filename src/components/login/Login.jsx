@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../commun/navbar/Navbar';
 import { login } from '../redux/authSlice';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const Login = () => {
                                 {...register('password')}
                                 required
                             />
+                        <p>don't have an account?<Link to='/register'>Register Now</Link></p>
                         </div>
                         <button type='submit' className='button'>
                             Login
